@@ -1,40 +1,75 @@
 import { Box, Button, TextField } from '@mui/material'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { ChangeEvent, useState } from 'react';
+
 
 export const NewEntry = () => {
+
+
+
+    const [ isAdding, setIsAdding ] = useState(false);
+
+    const [ inputValue, setInputValue ] = useState('');
+    const [ touched, setTouched ] = useState(false);
+
+    const onTextFieldChanged = (event: ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value)
+    }
+
+    const onSave = () => {
+        if (inputValue.length === 0) return;
+        return console.log(inputValue)
+    } 
+
+
   return (
     <Box sx={{ marginBottom: 2, paddingX: 2}}>
 
-        <Button startIcon={ <AddCircleOutlineIcon /> }
-                    fullWidth
-                    variant='outlined'
-        >
+        { 
+            isAdding ?
+                <>
 
-        </Button>
+                    <TextField  fullWidth sx={{ marginTop: 2, marginBottom: 1 }}
+                        placeholder='Nueva entrada'
+                        autoFocus
+                        multiline
+                        label='Nueva Entrada'
+                        helperText={inputValue.length <= 0 && touched && 'Ingrese un valor'}
+                        value={inputValue}
+                        onChange={onTextFieldChanged}
+                        error={inputValue.length <= 0 && touched}
+                        onBlur={ () => setTouched(true)}
+                    />
+                    <Box display='flex' justifyContent={'space-between'}  >
+                        <Button 
+                            variant='outlined'
+                            onClick={ () => setIsAdding(false)}
+                            >
+                            Cancelar
+                        </Button>
 
-        <TextField  fullWidth sx={{ marginTop: 2, marginBottom: 1 }}
-            placeholder='Nueva entrada'
-            autoFocus
-            multiline
-            label='Nueva Entrada'
-            helperText='Ingrese un valor'
-        />
-        <Box display='flex' justifyContent={'space-between'}  >
-            <Button 
-                variant='outlined'
+                        <Button 
+                            variant='outlined'
+                            color='secondary'
+                            endIcon={ <SaveOutlinedIcon /> }
+                            onClick={onSave}
+                            >
+                            Guardar
+                        </Button>
+                    </Box>
+                </>
+            :
+
+                <Button startIcon={ <AddCircleOutlineIcon /> }
+                            fullWidth
+                            variant='outlined'
+                            onClick={() => setIsAdding( true ) }
                 >
-                Cancelar
-            </Button>
+                    Agregar Tarea
+                </Button>
 
-            <Button 
-                variant='outlined'
-                color='secondary'
-                endIcon={ <SaveOutlinedIcon /> }
-                >
-                Guardar
-            </Button>
-        </Box>
+}
     </Box>
   )
 }
