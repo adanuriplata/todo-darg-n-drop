@@ -1,12 +1,13 @@
 import { Box, Button, TextField } from '@mui/material'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useContext } from 'react';
+import { EntriesContext } from '../../context/entries';
 
 
 export const NewEntry = () => {
 
-
+    const { addNewEntry } = useContext( EntriesContext )
 
     const [ isAdding, setIsAdding ] = useState(false);
 
@@ -19,7 +20,11 @@ export const NewEntry = () => {
 
     const onSave = () => {
         if (inputValue.length === 0) return;
-        return console.log(inputValue)
+
+        addNewEntry(inputValue);
+        setIsAdding(false);
+        setTouched(false);
+        setInputValue('');
     } 
 
 

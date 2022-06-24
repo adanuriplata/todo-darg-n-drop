@@ -7,7 +7,7 @@ interface EntryCardProps {
 }
 
 export const EntryCard: FC<EntryCardProps> = ({entry}) => {
-    console.log('desde el entrycard', entry)
+    
   return (
     <Card
         sx={{ marginBottom: 1 }}
