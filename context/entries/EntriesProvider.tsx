@@ -10,33 +10,7 @@ export interface EntriesState {
 }
 
 const Entries_INITIAL_STATE: EntriesState = {
-    entries: [
-        {
-            _id: uuidv4(),
-            description: 'Esto es un ejemplo de una tarea',
-            status: 'pending',
-            createdAt: Date.now(),
-        },
-        {
-            _id: uuidv4(),
-            description: 'Esto es otro ejmplo de tarea que estamos poniendo aqui',
-            status: 'in-progres',
-            createdAt: Date.now() - 100000,
-        },
-        {
-            _id: uuidv4(),
-            description: 'Tarea por concluir ya llenado mas contenido',
-            status: 'finished',
-            createdAt: Date.now() - 200000,
-        },
-        {
-            _id: uuidv4(),
-            description: 'Tarea de sofia pendiente',
-            status: 'finished',
-            createdAt: Date.now() - 200000,
-        },
-        
-],
+    entries: [],
 }
 
 export const EntriesProvider: FC<PropsWithChildren> = ({ children }) => {
