@@ -8,17 +8,17 @@ export const seedData = {
         {
             description: 'Esto es otro ejmplo de tarea que estamos poniendo aqui',
             status: 'in-progress',
-            createdAt: Date.now() - 100000,
+            createdAt: Date.now(),
         },
         {
             description: 'Tarea por concluir ya llenado mas contenido',
             status: 'finished',
-            createdAt: Date.now() - 200000,
+            createdAt: Date.now(),
         },
         {
             description: 'Tarea de sofia pendiente',
             status: 'finished',
-            createdAt: Date.now() - 200000,
+            createdAt: Date.now(),
         },
     ]
 }
