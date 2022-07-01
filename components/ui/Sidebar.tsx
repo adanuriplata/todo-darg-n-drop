@@ -10,7 +10,6 @@ const menuItems: string[] = ['inbox', 'Starred', 'Send Email', 'Drafts']
 export const Sidebar = () => {
 
   const { sidemenuOpen, closeSideMenu  } = useContext( UIContext )
-  console.log(sidemenuOpen)
 
   return (
     <Drawer
