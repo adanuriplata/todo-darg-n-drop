@@ -55,16 +55,40 @@ const refreshEntries = async() => {
     dispatch({ type: '[Entry] - Refresh-Data', payload: data})
 }
 
+const deleteEntry = async ({ _id, description, status}: Entry,) => {
+
+    try {
+        const {data} = await entriesApi.delete<Entry>(`/entries/${_id}`)
+        dispatch({ type: '[Entry] - Delete-Data', payload: data})
+        enqueueSnackbar('Entrada eliminada', {
+            variant: 'success',
+            autoHideDuration: 1500,
+            anchorOrigin: {
+                vertical: 'top',
+                horizontal: 'right'
+            }
+        })
+
+    }catch (error) {
+        alert('ha sucedifo un error')
+        console.log({error})
+    }
+    
+
+ }
+
  useEffect( () => {
     refreshEntries();
     
  }, []);
 
+
     return (
         <EntriesContext.Provider value={{
             ...state,
             addNewEntry,
-            updateEntry
+            updateEntry,
+            deleteEntry
         }}>
             {children}
         </EntriesContext.Provider>
